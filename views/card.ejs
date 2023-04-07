@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@200;300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="js/main.js" defer></script>
+
+</head>
+
+<body>
+    <div class="wrapper">
+
+
+        <section class="top">
+
+        <p>Welcome back <strong><%= collection %></strong>, don't forget to get your card stamped!</p>
+        <div class="card">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+    </section>
+
+    <section>
+
+    <p>You are just <strong><%- 10 - number %></strong> stamps away from claiming your <strong>15% discount</strong>.</p>
+
+    <a href="#" class="btn">Book Next Appointment</a>
+
+    </section>
+
+    <section class="equal-cols shadow">
+        <div class="col">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2416.0605942528277!2d15.24144721640409!3d52.73109897985474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47071fb2290ee1bb%3A0x586b355c32266939!2sSalon%20SISTERli%C5%84skie!5e0!3m2!1sen!2spl!4v1680094858250!5m2!1sen!2spl" width="100%" allowfullscreen="true" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="col">
+        <div class="text">
+        <p>Dąbrowskiego 26</p>
+        <p style="margin-bottom: .6rem">Gorzów Wlkp.</p>
+        <p>sisterlinskie.pl</p>
+        <p>+48 798 906 602</p>
+        <p>info@sisterlinskie.pl</p>
+    </div>
+    </div>
+    </section>
+
+    <section>
+        <div class="btn-group">
+
+            <div>
+                <form action="../card/" method="post">
+                    <button type="submit">ADD ONE</button>
+                </form>
+            </div>
+
+            <div>
+                <a class="btn" href="/user/logout">LOGOUT</a>
+            </div>
+
+        
+    </div>
+    </section>
+
+    </div>
+
+
+</body>
+
+</html>
