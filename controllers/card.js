@@ -1,4 +1,5 @@
 const Visit = require("../models/Visit")
+const FullCard = require("../models/FullCard")
 
 module.exports = {
     addStamp: async (req, res) => {
@@ -10,10 +11,16 @@ module.exports = {
                     name: currentUser.name,
                     user_id: currentUser.id
                 })
-                console.log("ADDED")
                 res.redirect("/card")
             } else {
-                console.log(`Current User ID: ${currentUser.id}`)
+                await FullCard.create({
+                    userID: currentUser.id,
+                    date: Date.now()
+                })
+                const cardID = await FullCard.find()
+                cardID.forEach((card) => {
+                    console.log(`Card ID: ${card.id} | User: ${card.userID}`)
+                })
                 await Visit.deleteMany({user_id: currentUser.id})
                 // await Visit.create({
                 //     user: currentUser.name,

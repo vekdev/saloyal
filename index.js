@@ -18,6 +18,7 @@ const homeRoutes = require("./routes/home")
 const initRoutes = require("./routes/initialise")
 const userRoutes = require("./routes/userRoutes")
 const cardRoutes = require("./routes/card")
+const adminRoutes = require("./routes/admin")
 
 connectDB()
 
@@ -46,5 +47,6 @@ app.use(passport.authenticate("session"))
 app.use("/", homeRoutes)
 app.use("/user", userRoutes)
 app.use("/card", cardRoutes)
+app.use("/admin", adminRoutes)
 
 app.listen(PORT, _ => console.log("Server Running"))

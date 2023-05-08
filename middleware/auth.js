@@ -5,5 +5,13 @@ module.exports = {
         } else {
             res.redirect("/user/login")
         }
+    },
+
+    ensureAdmin: (req, res, next) => {
+        if (req.user.admin === true) {
+            next()
+        } else {
+            res.redirect("/card")
+        }
     }
 }
