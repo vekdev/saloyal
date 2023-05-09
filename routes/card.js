@@ -7,6 +7,7 @@ router.get("/"), (req, res) => {
 }
 
 router.post("/", cardController.addStamp)
+router.post("/use", cardController.useCard)
 
 
 module.exports = router

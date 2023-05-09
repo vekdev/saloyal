@@ -6,7 +6,7 @@ const {ensureLoggedIn} = require("../middleware/auth")
 
 router.get("/", ensureLoggedIn, homeController.getIndex)
 router.get("/card", ensureLoggedIn, homeController.displayCard)
-router.get("/full-card", homeController.fullCard)
+// router.get("/full-card", homeController.fullCard)
 router.get("/count", homeController.count)
 
 router.get("/destroy", (req, res) => {
