@@ -1,9 +1,9 @@
 const express = require("express")
-const {ensureAdmin} = require("../middleware/auth")
 const router = express.Router()
 
-router.get("/", ensureAdmin,(req, res) => {
-    res.send("YOU MADE IT")
-})
+const adminControllers = require("../controllers/admin")
+const {ensureAdmin} = require("../middleware/auth")
+
+router.get("/", ensureAdmin, adminControllers.default)
 
 module.exports = router
