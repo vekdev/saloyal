@@ -27,33 +27,4 @@ module.exports = function (passport) {
         const user = await User.findById(id)
         return done(null, user)
     })
-
-
-    // passport.deserializeUser(async (id, done) => {
-    //     try {
-    //         const user = await User.findById(id)
-    //         return (err, user) => done(err, user)
-    //     } catch (error) {
-    //         console.error(error)
-    //     }
-    // })
-
-
-
-
-
-    // passport.serializeUser(function(user, cb) {
-    //     process.nextTick(function() {
-    //         console.log(user._id)
-    //       return cb(null, {
-    //         user: user
-    //       });
-    //     });
-    //   });
-      
-    //   passport.deserializeUser(function(user, cb) {
-    //     process.nextTick(function() {
-    //       return cb(null, user);
-    //     });
-    //   });
 }

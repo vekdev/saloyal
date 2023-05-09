@@ -17,7 +17,7 @@ module.exports = {
                 number: number, collection: titleCase(currentUser.name)
             })
         } else {
-            const url = "https://sisterlinskie.pl?" + req.user.id
+            const url = "https://sisterlinskie.pl?" + fullCard[0].id
             res.render("full-card", {
                 collection: req.user.name,
                 number: await Visit.count({user_id: req.user.id}),

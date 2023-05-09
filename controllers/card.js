@@ -1,11 +1,15 @@
 const Visit = require("../models/Visit")
 const FullCard = require("../models/FullCard")
+const User = require("../models/User")
 const QRCode = require("qrcode")
 
 module.exports = {
     addStamp: async (req, res) => {
         const currentUser = req.user
         try {
+            const userAccount = await User.findById(currentUser.id)
+            userAccount.$inc("lifetimeVisits", 1)
+            await userAccount.save()
             const count = await Visit.countDocuments({user_id: currentUser.id})
             if (count < 9) {
                 await Visit.create({
@@ -19,24 +23,21 @@ module.exports = {
                     name: currentUser.name,
                     date: Date.now()
                 })
-                const cardID = await FullCard.find()
-                cardID.forEach((card) => {
+
+                // THIS SECTION IS PURELY FOR DEBUGGING. DELETE BEFORE PRODUCTION
+                const allFullCards = await FullCard.find()
+                allFullCards.forEach((card) => {
                     console.log(`Card ID: ${card.id} | User: ${card.userID}`)
                 })
+                // END OF DEBUGGING SECTION
+                const cardID = await FullCard.find({userID: currentUser.id})
                 await Visit.deleteMany({user_id: currentUser.id})
-                // await Visit.create({
-                //     user: currentUser.name,
-                //     user_id: currentUser.id
-                // })
-                // res.redirect("/full-card")
-                
-                const url = "https://sisterlinskie.pl?" + req.user.id
+                const url = `https://sisterlinskie.pl?${cardID[0].id}`
                 res.render("full-card", {
                     collection: req.user.name,
                     number: await Visit.count({user_id: req.user.id}),
                     qrcode: await QRCode.toDataURL(url, {scale: 10, margin: 1})
                 })
-                // HERE I WILL NEED TO USE A NEW SCHEMA FOR FULL CARDS AND ADD A RECORD TO THIS WITH THE DETAILS
             }
         } catch (error) {
             console.error(error)

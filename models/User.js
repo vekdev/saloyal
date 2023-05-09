@@ -6,6 +6,10 @@ const userSchema = new mongoose.Schema({
     admin: {
         type: Boolean,
         default: false
+    },
+    lifetimeVisits: {
+        type: Number,
+        default: 0
     }
 })
 
