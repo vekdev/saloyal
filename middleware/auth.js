@@ -8,7 +8,7 @@ module.exports = {
     },
 
     ensureAdmin: (req, res, next) => {
-        if (req.user.admin === true) {
+        if (req.user && req.user.admin === true) {
             next()
         } else {
             res.redirect("/card")
