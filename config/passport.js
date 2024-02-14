@@ -7,7 +7,7 @@ module.exports = function (passport) {
     passport.use(new LocalStrategy(async function (username, password, done) {
 
         // FIND THE USER FIRST
-        const user = await User.findOne({ name: username })
+        const user = await User.findOne({ username: username })
         
         if (!user) { return done(null, false), { message: "NO USER FOUND" } }
 

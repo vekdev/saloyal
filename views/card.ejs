@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
+    <title>YOUR LOYALTY CARD</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@200;300;400;700&display=swap"
@@ -21,20 +21,29 @@
 
         <section class="top">
 
-        <p>Welcome back <strong><%= collection %></strong>, don't forget to get your card stamped!</p>
-        <div class="card">
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-        </div>
-    </section>
+            <% if (lifetimeVisits === 0) { %>
+                <p>Welcome <strong>
+                    <%= collection %>
+                </strong> and thank you getting your digital loyalty card! Don't forget to get your card stamped!</p>
+            <%} else { %>
+                <p>Welcome back <strong>
+                    <%= collection %>
+                </strong>, don't forget to get your card stamped!</p>
+            <%}%>
+        
+            <div class="card">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+        </section>
 
     <section>
 

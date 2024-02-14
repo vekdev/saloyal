@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
+    <title>ADMIN DASHBOARD</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@200;300;400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/css/main.css">
+    <!-- <link rel="stylesheet" href="/css/main.css"> -->
     <script src="js/main.js" defer></script>
 
 </head>
@@ -18,10 +18,26 @@
 <body>
     <div class="wrapper">
         <section>
-            <h1>This is the admin dashboard</h1>
+            <h1>Hi <%=user%>. You currently have <%=allUsersDetails.length%> loyalty card users</h1>
             <% allUsersDetails.forEach(user => { %>
                 <p>Name: <%=user.name%> | Lifetime Visits: <%=user.visits%> | Current Stamps: <%=user.stamps%></p>
             <%})%>
+        </section>
+
+        <section>
+            <h2>There are currently <%=cards.length%> clients with full loyalty cards</h2>
+            <% cards.forEach(card => { %>
+                <p><%=card.name%> <%=card.surname%> (username: <%=card.username%>)</p>
+            <%})%>
+        </section>
+
+        <section>
+            <h2>EDITING TESTING</h2>
+
+            <form action="../admin/edit-user" method="post">
+                <input type="text" name="username" id="username">
+                <button>SUBMIT</button>
+            </form>
         </section>
     </div>
 

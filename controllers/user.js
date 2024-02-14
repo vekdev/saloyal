@@ -21,14 +21,14 @@ module.exports = {
     userRegister: async (req, res) => {
 
         // CHECK IF USER ALREADY EXISTS IN DATABASE
-        const userExists = await User.findOne({name: req.body.username})
+        const userExists = await User.findOne({username: req.body.username})
 
         // BCRYPT HASHING LOGIC HERE
         const securePassword = await bcrypt.hash(req.body.password, saltRounds)
 
 
         if (!userExists) {
-            const newUser = await User.create({name: req.body.username, password: securePassword})
+            const newUser = await User.create({name: req.body.name, surname: req.body.surname, username: req.body.username, password: securePassword})
             req.login(newUser, (err) => {
                 if (err) {res.redirect("register")}
                 res.redirect("/card")

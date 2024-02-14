@@ -13,14 +13,16 @@ module.exports = {
             const count = await Visit.countDocuments({user_id: currentUser.id})
             if (count < 9) {
                 await Visit.create({
-                    name: currentUser.name,
+                    name: currentUser.username,
                     user_id: currentUser.id
                 })
                 res.redirect("/card")
             } else {
                 await FullCard.create({
                     userID: currentUser.id,
+                    username: currentUser.username,
                     name: currentUser.name,
+                    surname: currentUser.surname,
                     date: Date.now()
                 })
 
@@ -44,7 +46,10 @@ module.exports = {
         }
     },
     useCard: async (req, res) => {
+        const userAccount = await User.findById(req.user.id)
         await FullCard.deleteMany({userID: req.user.id})
+        userAccount.$inc("lifetimeVisits", 1)
+        await userAccount.save()
         res.redirect("/card")
     }
 }

@@ -14,7 +14,7 @@ module.exports = {
         const fullCard = await FullCard.find({userID: currentUser.id})
         if (fullCard.length === 0) {
             res.render("card", {
-                number: number, collection: titleCase(currentUser.name)
+                number: number, collection: currentUser.name, lifetimeVisits: currentUser.lifetimeVisits
             })
         } else {
             const url = "https://sisterlinskie.pl?" + fullCard[0].id
