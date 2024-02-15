@@ -2,7 +2,6 @@ const { urlencoded, json } = require("express")
 const express = require("express")
 const app = express()
 const passport = require("passport")
-const mongoose = require("mongoose")
 const session = require("express-session")
 const MongoStore = require("connect-mongo")
 
@@ -19,8 +18,9 @@ const initRoutes = require("./routes/initialise")
 const userRoutes = require("./routes/userRoutes")
 const cardRoutes = require("./routes/card")
 const adminRoutes = require("./routes/admin")
+const salonRoutes = require("./routes/salons")
 
-connectDB()
+connectDB("loyalty")
 
 app.set("view engine", "ejs")
 app.use(express.static("public"))
@@ -37,16 +37,13 @@ app.use(
         })
     })
 )
-    
-    
-// app.use(passport.initialize())
-// app.use(passport.session())
+
 app.use(passport.authenticate("session"))
 
-// app.use("/initialise", initRoutes)
 app.use("/", homeRoutes)
 app.use("/user", userRoutes)
 app.use("/card", cardRoutes)
 app.use("/admin", adminRoutes)
+app.use("/salons", salonRoutes)
 
 app.listen(PORT, _ => console.log("Server Running"))

@@ -21,6 +21,9 @@
             <h1>Hi <%=user%>. You currently have <%=allUsersDetails.length%> loyalty card users</h1>
             <% allUsersDetails.forEach(user => { %>
                 <p>Name: <%=user.name%> | Lifetime Visits: <%=user.visits%> | Current Stamps: <%=user.stamps%></p>
+                <form action="../admin/add-stamp/<%=user.id%>" method="post">
+                    <button>ADD STAMP</button>
+                </form>
             <%})%>
         </section>
 
@@ -36,7 +39,17 @@
 
             <form action="../admin/edit-user" method="post">
                 <input type="text" name="username" id="username">
+                <input type="number" name="visits" id="visits">
                 <button>SUBMIT</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>TESTING HTML</h2>
+            <form action="../admin/testing-html" method="post">
+                <textarea name="text" cols="40" rows="5" id="text"></textarea>
+                <button>SUBMIT</button>
+
             </form>
         </section>
     </div>

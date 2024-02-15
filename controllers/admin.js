@@ -25,14 +25,39 @@ module.exports = {
         })
     },
     editUser: async (req, res) => {
-        // IDEALLY I WILL WANT A USER TO CLICK A BUTTON THAT SENDS THE USERNAME TO EDIT TO A 
-        // POPUP AND THEN ALLOWS THE USER TO EDIT THE DETAIOS AND SAVE WHICH WILL CLOSE THE 
-        // POPUP AND UPDATE THE USER
         const userExists = await User.find({username: req.body.username})
-        
         if (userExists.length === 1) {
-            console.log("USER FOUND")
+            userExists[0].lifetimeVisits = req.body.visits
+            await userExists[0].save()
         }
         res.redirect("/admin")
+    },
+    addStamp: async (req, res) => {
+        const user = await User.findById(req.params.id)
+        try {
+            const count = await Visit.countDocuments({user_id: user.id})
+            const existingCard = await FullCard.findOne({username: user.username})
+            if (count < 9 && !existingCard) {
+                await Visit.create({ name: user.username, user_id: user.id })
+                user.$inc("lifetimeVisits", 1)
+                await user.save()
+            } else {
+                if (!existingCard) {
+                    await FullCard.create({
+                        userID: user.id,
+                        username: user.username,
+                        name: user.name,
+                        surname: user.surname,
+                        date: Date.now()
+                    })
+                    await Visit.deleteMany({user_id: user.id})
+                } else {
+                    console.log("use existing card first")
+                }
+            }
+            res.redirect("/admin")
+        } catch {
+            console.error(error)
+        }
     }
 }
