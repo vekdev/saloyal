@@ -14,7 +14,6 @@ const PORT = process.env.PORT
 const { connectDB } = require("./config/db")
 
 const homeRoutes = require("./routes/home")
-const initRoutes = require("./routes/initialise")
 const userRoutes = require("./routes/userRoutes")
 const cardRoutes = require("./routes/card")
 const adminRoutes = require("./routes/admin")

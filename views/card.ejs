@@ -30,24 +30,19 @@
                     <%= collection %>
                 </strong>, don't forget to get your card stamped!</p>
             <%}%>
-        
+
             <div class="card">
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
+                
+                <% for (let i = 0; i < numberOfStamps; i++) { %>
+                    <div class="box"></div>
+                <% } %>
             </div>
+
         </section>
 
     <section>
 
-    <p>You are just <strong><%- 10 - number %></strong> stamps away from claiming your <strong>15% discount</strong>.</p>
+    <p>You are just <strong><%- numberOfStamps - number %></strong> stamps away from claiming your <strong><%= reward %></strong>.</p>
 
     <a href="#" class="btn">Book Next Appointment</a>
 

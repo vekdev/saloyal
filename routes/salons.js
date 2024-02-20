@@ -6,7 +6,7 @@ const { connectDB } = require("../config/db")
 
 router.get("/:salon", (req, res) => {
     res.send(req.params.salon)
-    connectDB(req.params.salon)
+    // connectDB(req.params.salon)
 })
 
 

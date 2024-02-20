@@ -31,6 +31,7 @@ async function getCount() {
         const res = await fetch("count")
         const data = await res.json()
         currentStampNumber = data
+        console.log(data)
         highlightBoxes(data.number)
     } catch (error) {
         console.error(error)
@@ -38,14 +39,8 @@ async function getCount() {
 }
 
 function highlightBoxes(n) {
-    // boxes.forEach(box => {
-    //     box.style.background = "#fff"
-    // })
     for (i=0; i<n; i++) {
-        if (n <= 10) {
-            // boxes[i].style.background = "#0e1d3d"
-            boxes[i].classList.add("stamped")
-        }
+        boxes[i].classList.add("stamped")
     }
 }
 

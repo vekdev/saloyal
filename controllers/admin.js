@@ -1,7 +1,8 @@
 const Visit = require("../models/Visit")
 const User = require("../models/User")
 const FullCard = require("../models/FullCard")
-const { titleCase } = require("../models/typeFunctions")
+const {add, use} = require("../models/cardFunctions")
+// const { titleCase } = require("../models/typeFunctions")
 
 module.exports = {
     default: async (req, res) => {
@@ -34,30 +35,10 @@ module.exports = {
     },
     addStamp: async (req, res) => {
         const user = await User.findById(req.params.id)
-        try {
-            const count = await Visit.countDocuments({ user_id: user.id })
-            const existingCard = await FullCard.findOne({ username: user.username })
-            if (count < 9 && !existingCard) {
-                await Visit.create({ name: user.username, user_id: user.id })
-                user.$inc("lifetimeVisits", 1)
-                await user.save()
-            } else if (!existingCard) {
-                await FullCard.create({
-                    userID: user.id,
-                    username: user.username,
-                    name: user.name,
-                    surname: user.surname,
-                    date: Date.now()
-                })
-                user.$inc("lifetimeVisits", 1)
-                await user.save()
-                await Visit.deleteMany({ user_id: user.id })
-            } else {
-                console.log("use existing card first")
-            }
-            res.redirect("/admin")
-        } catch {
-            console.error(error)
-        }
+        add(user, res, true)
+    },
+    useCard: async (req, res) => {
+        const user = await User.findById(req.params.id)
+        use(user, res, true)
     }
 }

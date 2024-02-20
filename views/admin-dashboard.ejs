@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@200;300;400;700&display=swap"
         rel="stylesheet">
     <!-- <link rel="stylesheet" href="/css/main.css"> -->
-    <script src="js/main.js" defer></script>
+    <!-- <script src="js/main.js" defer></script> -->
 
 </head>
 
@@ -24,7 +24,10 @@
                 <form action="../admin/add-stamp/<%=user.id%>" method="post">
                     <button>ADD STAMP</button>
                 </form>
-            <%})%>
+                <form action="../admin/use-card/<%=user.id%>" method="post">
+                    <button>USE CARD</button>
+                </form>
+                <%})%>
         </section>
 
         <section>
