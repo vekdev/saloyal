@@ -23,7 +23,7 @@ module.exports = {
                 numberOfStamps: settings.numberOfStampsAvailable
             })
         } else {
-            const url = "https://sisterlinskie.pl?" + fullCard[0].id
+            const url = "sisterlisnkie.pl/admin/use-card/" + currentUser.id
             res.render("full-card", {
                 collection: req.user.name,
                 number: await Visit.count({user_id: req.user.id}),

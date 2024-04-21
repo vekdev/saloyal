@@ -8,6 +8,7 @@ router.get("/", ensureAdmin, adminControllers.default)
 router.post("/edit-user", ensureAdmin, adminControllers.editUser)
 router.post("/add-stamp/:id", ensureAdmin, adminControllers.addStamp)
 router.post("/use-card/:id", ensureAdmin,adminControllers.useCard)
+router.get("/use-card/:id", ensureAdmin, adminControllers.useCard)
 
 // TEMP FOR TESTING PURPOSES
 const Setting = require("../models/Setting")

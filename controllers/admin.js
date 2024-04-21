@@ -36,6 +36,7 @@ module.exports = {
     addStamp: async (req, res) => {
         const user = await User.findById(req.params.id)
         add(user, res, true)
+        console.log(user.id)
     },
     useCard: async (req, res) => {
         const user = await User.findById(req.params.id)
